@@ -19,11 +19,11 @@ struct Game {
 
 impl Game {
     fn line_value1(&self, bag: &Cubes) -> u32 {
-        if self.draws.iter().all(|draw| bag.can_contain(&draw)) {
-            return self.id;
+        if self.draws.iter().all(|draw| bag.can_contain(draw)) {
+            self.id
         } else {
-            return 0;
-        };
+            0
+        }
     }
 
     fn line_value2(&self) -> u32 {
@@ -59,7 +59,7 @@ fn parse_line(line: &str) -> Game {
             blue: 0,
         };
         draw.split(", ").for_each(|item| {
-            let mut iter = item.split(" ");
+            let mut iter = item.split(' ');
             let n = iter.next().unwrap().parse::<u32>().unwrap();
             let color = iter.next().unwrap();
             match color {
